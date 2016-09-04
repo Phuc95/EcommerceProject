@@ -1,17 +1,38 @@
-﻿using System;
+﻿using EcommerceProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace EcommerceProject.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string search)
+        private EcommerceDBEntities db = new EcommerceDBEntities();
+        public ActionResult Index()
         {
-            Debug.WriteLine(search);
+            //var result = db.Products.Where(i => i.CategoryID == 1);
+            return View();
+        }
+
+        public ActionResult GetDataHomePage()
+        {
+            //var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
+            var products = from x in db.Products.Where(i => i.CategoryID == 1).Take(10)
+                           select new HomeItem
+                           {
+                               ProductName = x.ProductName,
+                               ProductPrice = x.SellingPrice.ToString(),
+                               ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                               CPU = x.ProductDetails.FirstOrDefault().CPU,
+                               OS = x.ProductDetails.FirstOrDefault().OS,
+                               RAM = x.ProductDetails.FirstOrDefault().RAM,
+                               Screen = x.ProductDetails.FirstOrDefault().Screen,
+                               InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                           };
             return View();
         }
 

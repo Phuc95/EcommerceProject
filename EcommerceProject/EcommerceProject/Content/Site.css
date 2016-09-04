@@ -17,7 +17,7 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-select,
+input,select,
 textarea {
     max-width: 100%;
 }
@@ -25,4 +25,91 @@ textarea {
 .searchBox {
     /*padding-top: 5%;
     padding-bottom: 5%;*/
+}
+
+.filter{
+    background: #f9f9f9;
+    border: ridge;
+    /*width: 100%;*/
+    margin-top: 5%;
+}
+
+.filterContent{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.filterLeft {
+    float: left;
+}
+
+    .filterLeft span {
+        padding: 12px 10px;
+    }
+
+    .filterLeft a {
+        padding: 12px 8px;
+    }
+
+.filterRight {
+    float: right;
+}
+
+    .filterRight span {
+        padding: 12px 10px;
+    }
+
+    .filterRight a {
+        padding: 12px 8px;
+    }
+
+.viewDetail {
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    height:auto;
+    border: 1px solid #d97f00;
+    background: -webkit-linear-gradient(top,#f89406,#f76b1c);
+    border-radius: 3px;
+    display: block;
+}
+
+.cell {
+    border: ridge;
+    padding-top: 10px;
+}
+
+.cellInfo {
+    display:block;
+    background: #f8f8f8;
+    padding: 2% 0;
+    color: #fff;
+    position:absolute;
+}
+
+.viewMorePhone {
+    display: block;
+    padding: 10px 0;
+    /*color: #288ad6;*/
+    text-align: center;
+    width: 240px;
+    margin: 10px auto;
+    background: #fff;
+    border: 1px solid #288ad6;
+    border-radius: 4px;
+}
+
+.cell span {
+    display: block;
+    padding: 2px 0px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.detail {
+    display: block;
+    padding: 2px 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

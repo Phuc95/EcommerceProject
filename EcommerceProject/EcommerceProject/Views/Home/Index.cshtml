@@ -25,30 +25,90 @@
         </div>
         <input type="submit"/>
     }*@
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+@using (Html.BeginForm("GetDataHomePage", "Home", FormMethod.Post))
+{
+    <input type="submit" />
+}
+
+
+@*<div class="row filter" style="margin-top: 5%;">
+    <div class="col-md-12 filterContent">
+        <div class="filterLeft">
+            <span>Smartphone: </span>
+            <a href="#">Apple</a>
+            <a href="#">Samsung</a>
+            <a href="#">Sony</a>
+            <a href="#">Nokia</a>
+            <a href="#">HTC</a>
+        </div>
+        <div class="filterRight">
+            <span>Price: </span>
+            <a href="#">Under 50$</a>
+            <a href="#">50$ - 100$</a>
+            <a href="#">150$ - 300$</a>
+            <a href="#">300$ - 450$</a>
+            <a href="#">450$ - 650$</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 cell">
+        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn2.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-den-org-1.png"><br/>
+        <strong>Samsung Galaxy Note 7</strong><br />
+        <strong style="color:red">$830</strong><br />
+        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
+        <span>OS: Android 6.0 Marshmallow</span>
+        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
+        <span>RAM: 4GB</span>
+        <span>Internal storage: 32GB</span>
+        <a class="viewDetail" href="#">View Detail</a>
+    </div>
+    <div class="col-md-2 cell">
+        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn4.tgdd.vn/Products/Images/42/73023/sony-xperia-z5-premium-bac-2-org-1.png" /><br />
+        <strong>Samsung Galaxy Note 7</strong><br />
+        <strong style="color:red">$830</strong><br />
+        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
+        <span>OS: Android 6.0 Marshmallow</span>
+        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
+        <span>RAM: 4GB</span>
+        <span>Internal storage: 32GB</span>
+        <a class="viewDetail" href="#">View Detail</a>
+    </div>
+    <div class="col-md-2 cell">
+        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
+        <strong>Samsung Galaxy Note 7</strong><br />
+        <strong style="color:red">$830</strong><br />
+        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
+        <span>OS: Android 6.0 Marshmallow</span>
+        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
+        <span>RAM: 4GB</span>
+        <span>Internal storage: 32GB</span>
+        <a class="viewDetail" href="#">View Detail</a>
+    </div>
+    <div class="col-md-2 cell">
+        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
+        <strong>Samsung Galaxy Note 7</strong><br />
+        <strong style="color:red">$830</strong><br />
+        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
+        <span>OS: Android 6.0 Marshmallow</span>
+        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
+        <span>RAM: 4GB</span>
+        <span>Internal storage: 32GB</span>
+        <a class="viewDetail" href="#">View Detail</a>
+    </div>
+    <div class="col-md-2 cell">
+        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
+        <strong>Samsung Galaxy Note 7</strong><br />
+        <strong style="color:red">$830</strong><br />
+        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
+        <span>OS: Android 6.0 Marshmallow</span>
+        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
+        <span>RAM: 4GB</span>
+        <span>Internal storage: 32GB</span>
+        <a class="viewDetail" href="#">View Detail</a>
+    </div>
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<a href="#" class="viewMorePhone">View more smartphones</a>*@
