@@ -21,14 +21,14 @@ namespace EcommerceProject.Models
         }
     
         public int OrderID { get; set; }
-        public Nullable<int> UserID { get; set; }
         public string FullName { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
         public string ShippingAddress { get; set; }
         public Nullable<int> Total { get; set; }
         public string PaymentMethod { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<EcommerceProject.Models.HomeItem>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -26,89 +27,90 @@
         <input type="submit"/>
     }*@
 
-@using (Html.BeginForm("GetDataHomePage", "Home", FormMethod.Post))
+@*@using (Html.BeginForm("GetDataHomePage", "Home", FormMethod.Post))
 {
     <input type="submit" />
-}
+}*@
 
 
-@*<div class="row filter" style="margin-top: 5%;">
-    <div class="col-md-12 filterContent">
+<div class="row filter">
+    <div class="col-md-12 filterContent">        
         <div class="filterLeft">
-            <span>Smartphone: </span>
-            <a href="#">Apple</a>
-            <a href="#">Samsung</a>
-            <a href="#">Sony</a>
-            <a href="#">Nokia</a>
-            <a href="#">HTC</a>
+            <span style="color:white;">Smartphone:</span>
         </div>
         <div class="filterRight">
-            <span>Price: </span>
-            <a href="#">Under 50$</a>
-            <a href="#">50$ - 100$</a>
-            <a href="#">150$ - 300$</a>
-            <a href="#">300$ - 450$</a>
-            <a href="#">450$ - 650$</a>
+            <a href="#">View more smartphone</a>
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-md-2 cell">
-        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn2.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-den-org-1.png"><br/>
-        <strong>Samsung Galaxy Note 7</strong><br />
-        <strong style="color:red">$830</strong><br />
-        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
-        <span>OS: Android 6.0 Marshmallow</span>
-        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
-        <span>RAM: 4GB</span>
-        <span>Internal storage: 32GB</span>
-        <a class="viewDetail" href="#">View Detail</a>
-    </div>
-    <div class="col-md-2 cell">
-        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn4.tgdd.vn/Products/Images/42/73023/sony-xperia-z5-premium-bac-2-org-1.png" /><br />
-        <strong>Samsung Galaxy Note 7</strong><br />
-        <strong style="color:red">$830</strong><br />
-        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
-        <span>OS: Android 6.0 Marshmallow</span>
-        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
-        <span>RAM: 4GB</span>
-        <span>Internal storage: 32GB</span>
-        <a class="viewDetail" href="#">View Detail</a>
-    </div>
-    <div class="col-md-2 cell">
-        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
-        <strong>Samsung Galaxy Note 7</strong><br />
-        <strong style="color:red">$830</strong><br />
-        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
-        <span>OS: Android 6.0 Marshmallow</span>
-        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
-        <span>RAM: 4GB</span>
-        <span>Internal storage: 32GB</span>
-        <a class="viewDetail" href="#">View Detail</a>
-    </div>
-    <div class="col-md-2 cell">
-        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
-        <strong>Samsung Galaxy Note 7</strong><br />
-        <strong style="color:red">$830</strong><br />
-        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
-        <span>OS: Android 6.0 Marshmallow</span>
-        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
-        <span>RAM: 4GB</span>
-        <span>Internal storage: 32GB</span>
-        <a class="viewDetail" href="#">View Detail</a>
-    </div>
-    <div class="col-md-2 cell">
-        <img width="150" style="display: block; margin:auto;" height="150" src="https://cdn.tgdd.vn/Products/Images/42/75180/samsung-galaxy-s7-edge-26-200x200.jpg" /><br />
-        <strong>Samsung Galaxy Note 7</strong><br />
-        <strong style="color:red">$830</strong><br />
-        <span>Screen: Super AMOLED, 5.5", QuadHD</span>
-        <span>OS: Android 6.0 Marshmallow</span>
-        <span>CPU: Exynos 8890 8 cores 64-bit, 4 cores 2.3 GHz and 4 cores 1.6 GHz</span>
-        <span>RAM: 4GB</span>
-        <span>Internal storage: 32GB</span>
-        <a class="viewDetail" href="#">View Detail</a>
-    </div>
+    @foreach (var item in ViewBag.HomeItemPhone)
+    {
+        <div class="col-md-1 col-sm-3 cell">
+            <a href="#" style="text-decoration:none; color: black;">
+                <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+                <strong>@item.ProductName</strong><br />
+                <span>Screen: @item.Screen</span>
+                <span>OS: @item.OS</span>
+                <span>CPU: @item.CPU</span>
+                <span>RAM: @item.RAM</span>
+                <span>Internal storage: @item.InternalStorage</span><br/>
+                <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+                @*<a class="viewDetail" href="#">View Detail</a>*@
+            </a>
+        </div>
+    }
 
 </div>
 
-<a href="#" class="viewMorePhone">View more smartphones</a>*@
+<div class="row filter" style="margin-top: 2%;">
+    <div class="col-md-12 filterContent">
+        <div class="filterLeft">
+            <span style="color:white;">Tablet:</span>
+        </div>
+        <div class="filterRight">
+            <a href="#">View more tablet</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in ViewBag.HomeItemTablet)
+    {
+        <div class="col-md-1 col-sm-3 cell">
+            <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+            <strong>@item.ProductName</strong><br />
+            <span>Screen: @item.Screen</span>
+            <span>OS: @item.OS</span>
+            <span>CPU: @item.CPU</span>
+            <span>RAM: @item.RAM</span>
+            <span>Internal storage: @item.InternalStorage</span><br />
+            <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+        </div>
+    }
+</div>
+
+<div class="row filter" style="margin-top: 2%;">
+    <div class="col-md-12 filterContent">
+        <div class="filterLeft">
+            <span style="color:white;">Laptop:</span>
+        </div>
+        <div class="filterRight">
+            <a href="#">View more laptop</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in ViewBag.HomeItemLaptop)
+    {
+        <div class="col-md-1 col-sm-3 cell">
+            <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+            <strong>@item.ProductName</strong><br />
+            <span>Screen: @item.Screen</span>
+            <span>OS: @item.OS</span>
+            <span>CPU: @item.CPU</span>
+            <span>RAM: @item.RAM</span>
+            <span>Internal storage: @item.InternalStorage</span><br />
+            <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+        </div>
+    }
+</div>

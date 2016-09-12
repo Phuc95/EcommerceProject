@@ -35,10 +35,10 @@ C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\S
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\System.Web.WebPages.Razor.xml
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\Antlr3.Runtime.pdb
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\Newtonsoft.Json.xml
-C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\obj\Debug\EcommerceProject.csprojResolveAssemblyReference.cache
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\obj\Debug\EcommerceProject.dll
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\obj\Debug\EcommerceProject.pdb
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.dll
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.SqlServer.dll
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.xml
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.SqlServer.xml
+C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\obj\Debug\EcommerceProject.csprojResolveAssemblyReference.cache

@@ -17,6 +17,7 @@ namespace EcommerceProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            this.Comments = new HashSet<Comment>();
             this.OrderDetails = new HashSet<OrderDetail>();
             this.ProductColors = new HashSet<ProductColor>();
             this.ProductDetails = new HashSet<ProductDetail>();
@@ -32,6 +33,8 @@ namespace EcommerceProject.Models
         public Nullable<System.DateTime> CreatedAt { get; set; }
     
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

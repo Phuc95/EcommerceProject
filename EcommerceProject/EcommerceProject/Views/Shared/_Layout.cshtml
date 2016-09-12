@@ -6,8 +6,16 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+        $('#loginLin').click(function () {
+            showModal();
+        })
+        function showModal() {
+            $('#myModal').modal(options);
+        }
+    </script>
 </head>
-<body>
+<body style="background-color: #f1f1f1">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -49,9 +57,25 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    <li>@Html.ActionLink("Register", "Create", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Log in", "#", "#", routeValues: null, htmlAttributes: new { data_toggle="modal", data_target="#loginModal"})</li>
+                    @*<li><button type="button" data-toggle="modal" data-target="#myModal">Login</button></li>*@
                 </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

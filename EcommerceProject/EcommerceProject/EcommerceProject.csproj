@@ -132,53 +132,58 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EcommerceEntity.Context.cs">
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EcommerceDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EcommerceEntity.Context.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EcommerceEntity.cs">
+    <Compile Include="Models\EcommerceDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EcommerceEntity.Designer.cs">
+    <Compile Include="Models\EcommerceDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EcommerceEntity.edmx</DependentUpon>
+      <DependentUpon>EcommerceDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeItem.cs" />
     <Compile Include="Models\Manufacturer.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductColor.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductDetail.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductImage.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>EcommerceEntity.tt</DependentUpon>
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -190,24 +195,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\EcommerceEntity.Context.tt">
+    <Content Include="Models\EcommerceDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EcommerceEntity.edmx</DependentUpon>
-      <LastGenOutput>EcommerceEntity.Context.cs</LastGenOutput>
+      <DependentUpon>EcommerceDB.edmx</DependentUpon>
+      <LastGenOutput>EcommerceDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\EcommerceEntity.tt">
+    <Content Include="Models\EcommerceDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EcommerceEntity.edmx</DependentUpon>
-      <LastGenOutput>EcommerceEntity.cs</LastGenOutput>
+      <DependentUpon>EcommerceDB.edmx</DependentUpon>
+      <LastGenOutput>EcommerceDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\EcommerceEntity.edmx">
+    <EntityDeploy Include="Models\EcommerceDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EcommerceEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>EcommerceDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\EcommerceEntity.edmx.diagram">
-      <DependentUpon>EcommerceEntity.edmx</DependentUpon>
+    <Content Include="Models\EcommerceDB.edmx.diagram">
+      <DependentUpon>EcommerceDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -235,11 +240,14 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModel\" />
-    <Folder Include="Views\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

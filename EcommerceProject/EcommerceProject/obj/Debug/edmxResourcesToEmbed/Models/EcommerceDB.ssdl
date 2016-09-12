@@ -7,6 +7,16 @@
     <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CategoryName" Type="varchar" MaxLength="30" />
   </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Comment" Type="varchar" MaxLength="1000" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="Manufacturer">
     <Key>
       <PropertyRef Name="ManufacturerID" />
@@ -19,8 +29,9 @@
       <PropertyRef Name="OrderID" />
     </Key>
     <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserID" Type="int" />
     <Property Name="FullName" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
     <Property Name="ShippingAddress" Type="varchar" MaxLength="100" />
     <Property Name="Total" Type="int" />
     <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
@@ -93,22 +104,33 @@
     <Property Name="UserName" Type="varchar" MaxLength="20" />
     <Property Name="Password" Type="varchar" MaxLength="200" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
-    <Property Name="Phone" Type="varchar" MaxLength="20" />
     <Property Name="Role" Type="int" />
   </EntityType>
-  <Association Name="FK__Order__UserID__22AA2996">
+  <Association Name="FK__Comment__Product__239E4DCF">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comment__UserID__22AA2996">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="UserID" />
       </Principal>
-      <Dependent Role="Order">
+      <Dependent Role="Comment">
         <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Order__25869641">
+  <Association Name="FK__OrderDeta__Order__29572725">
     <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -120,7 +142,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__OrderDeta__Produ__267ABA7A">
+  <Association Name="FK__OrderDeta__Produ__2A4B4B5E">
     <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
     <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
     <ReferentialConstraint>
@@ -194,6 +216,7 @@
   </Association>
   <EntityContainer Name="EcommerceDBModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
@@ -202,15 +225,19 @@
     <EntitySet Name="ProductDetail" EntityType="Self.ProductDetail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Order__UserID__22AA2996" Association="Self.FK__Order__UserID__22AA2996">
-      <End Role="User" EntitySet="User" />
-      <End Role="Order" EntitySet="Order" />
+    <AssociationSet Name="FK__Comment__Product__239E4DCF" Association="Self.FK__Comment__Product__239E4DCF">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Comment" EntitySet="Comment" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Order__25869641" Association="Self.FK__OrderDeta__Order__25869641">
+    <AssociationSet Name="FK__Comment__UserID__22AA2996" Association="Self.FK__Comment__UserID__22AA2996">
+      <End Role="User" EntitySet="User" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Order__29572725" Association="Self.FK__OrderDeta__Order__29572725">
       <End Role="Order" EntitySet="Order" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>
-    <AssociationSet Name="FK__OrderDeta__Produ__267ABA7A" Association="Self.FK__OrderDeta__Produ__267ABA7A">
+    <AssociationSet Name="FK__OrderDeta__Produ__2A4B4B5E" Association="Self.FK__OrderDeta__Produ__2A4B4B5E">
       <End Role="Product" EntitySet="Product" />
       <End Role="OrderDetail" EntitySet="OrderDetail" />
     </AssociationSet>

@@ -14,7 +14,47 @@ namespace EcommerceProject.Controllers
         private EcommerceDBEntities db = new EcommerceDBEntities();
         public ActionResult Index()
         {
-            //var result = db.Products.Where(i => i.CategoryID == 1);
+            //var result = db.Products.Where(i => i.CategoryID == 1)
+            var homeItemPhone = from x in db.Products.Where(i => i.CategoryID == 1).Take(10)
+                           select new HomeItem
+                           {
+                               ProductName = x.ProductName,
+                               ProductPrice = x.SellingPrice.ToString(),
+                               ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                               CPU = x.ProductDetails.FirstOrDefault().CPU,
+                               OS = x.ProductDetails.FirstOrDefault().OS,
+                               RAM = x.ProductDetails.FirstOrDefault().RAM,
+                               Screen = x.ProductDetails.FirstOrDefault().Screen,
+                               InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                           };
+
+            var homeItemTablet = from x in db.Products.Where(i => i.CategoryID == 2).Take(10)
+                                select new HomeItem
+                                {
+                                    ProductName = x.ProductName,
+                                    ProductPrice = x.SellingPrice.ToString(),
+                                    ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                                    CPU = x.ProductDetails.FirstOrDefault().CPU,
+                                    OS = x.ProductDetails.FirstOrDefault().OS,
+                                    RAM = x.ProductDetails.FirstOrDefault().RAM,
+                                    Screen = x.ProductDetails.FirstOrDefault().Screen,
+                                    InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                                };
+            var homeItemLaptop = from x in db.Products.Where(i => i.CategoryID == 3).Take(10)
+                                select new HomeItem
+                                {
+                                    ProductName = x.ProductName,
+                                    ProductPrice = x.SellingPrice.ToString(),
+                                    ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                                    CPU = x.ProductDetails.FirstOrDefault().CPU,
+                                    OS = x.ProductDetails.FirstOrDefault().OS,
+                                    RAM = x.ProductDetails.FirstOrDefault().RAM,
+                                    Screen = x.ProductDetails.FirstOrDefault().Screen,
+                                    InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                                };
+            ViewBag.HomeItemPhone = homeItemPhone;
+            ViewBag.HomeItemTablet = homeItemTablet;
+            ViewBag.HomeItemLaptop = homeItemLaptop;
             return View();
         }
 

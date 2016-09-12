@@ -73,15 +73,22 @@ create table [User](
 	UserID int identity(1,1) primary key,
 	UserName varchar(20),
 	[Password] varchar(200),
-	Email varchar(20),
-	Phone varchar(20),
+	Email varchar(50),
 	[Role] int
 )
 go
+create table Comment(
+	CommentID int identity(1,1) primary key,
+	UserID int foreign key references [User](UserID),
+	ProductID int foreign key references Product(ProductID),
+	Comment varchar(1000),
+	CreatedDate datetime
+) 
 create table [Order](
 	OrderID int identity(1,1) primary key,
-	UserID int foreign key references [User](UserID),
 	FullName varchar(50),
+	Phone varchar(20),
+	Email varchar(50),
 	ShippingAddress varchar(100),
 	Total int,
 	PaymentMethod varchar(50),
@@ -97,3 +104,4 @@ create table OrderDetail(
 	TotalUnit int
 )
 select * from [Order]
+select * from [User]

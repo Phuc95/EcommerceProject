@@ -1970,11 +1970,10 @@ pre code {
     width: 25%;
   }
   .col-md-2 {
-    width: 20%;
-    height: 400px;
+    width: 16.66666667%;
   }
   .col-md-1 {
-    width: 8.33333333%;
+    width: 20%;
   }
   .col-md-pull-12 {
     right: 100%;
@@ -4389,7 +4388,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-form .form-control {
     display: inline-block;
-    width: auto;
+    /*width: auto;*/
     vertical-align: middle;
   }
   .navbar-form .form-control-static {
