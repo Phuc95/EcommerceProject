@@ -230,3 +230,31 @@ insert into ProductImage values(35,'https://cdn.tgdd.vn/Products/Images/44/77490
 
 select * from ProductImage
 select * from Product
+
+SELECT        ManufacturerName
+FROM            Category INNER JOIN
+                         Product ON Category.CategoryID = Product.CategoryID INNER JOIN
+                         Manufacturer ON Product.ManufacturerID = Manufacturer.ManufacturerID
+						 where Category.CategoryID = 1
+						 group by ManufacturerName
+
+create procedure GetManufactureList(
+	@id int
+)
+as
+begin
+SELECT        Manufacturer.ManufacturerID, ManufacturerName
+FROM            Category INNER JOIN
+                         Product ON Category.CategoryID = Product.CategoryID INNER JOIN
+                         Manufacturer ON Product.ManufacturerID = Manufacturer.ManufacturerID
+						 where Category.CategoryID = @id
+						 group by Manufacturer.ManufacturerID, ManufacturerName
+end
+
+drop procedure GetManufactureList
+
+exec GetManufactureList 1
+
+exec GetManufactureList 2
+
+exec GetManufactureList 3

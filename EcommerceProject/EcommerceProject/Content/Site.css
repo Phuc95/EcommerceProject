@@ -4,10 +4,6 @@
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -27,18 +23,81 @@ textarea {
     padding-bottom: 5%;*/
 }
 
-.filter {
+.header {
     background: #f9f9f9;
     border-bottom: 2px solid #105caa;
     /*width: 100%;*/
     margin-top: 2%;
 }
 
+.filterHeader {
+    background-color: #105caa;
+    color: #fff;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin-left: -10px;
+    width: 160px;
+    text-align: left;
+}
+
+    .filterHeader span {
+        padding: 12px 10px;
+    }
+
 .filterContent {
     background-color: #fff;
 }
 
-.filterLeft {
+    .filterContent li {
+        padding: 5px 0;
+        list-style: none;
+    }
+
+    .filterContent a {
+        text-decoration: none;
+        margin-left: 50px;
+    }
+
+/*.filterLeft {
+    background: #105caa;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 210px;
+    text-transform: uppercase;
+}
+
+    .filterLeft span {
+        padding: 12px 10px;
+    }*/
+
+.headerContent {
+    background-color: #fff;
+}
+
+.specificTypeHeaderContent {
+    background-color: #fff;
+    border-bottom: 2px solid #105caa;
+}
+
+.specificTypeHeaderContentLeft {
+    background: #105caa;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 210px;
+    text-transform: uppercase;
+}
+
+    .specificTypeHeaderContentLeft span {
+        padding: 12px 10px;
+    }
+
+.headerLeft {
     float: left;
     background: #105caa;
     padding-top: 6px;
@@ -50,15 +109,15 @@ textarea {
     margin-left: -15px;
 }
 
-    .filterLeft span {
+    .headerLeft span {
         padding: 12px 10px;
     }
 
-.filterRight {
+.headerRight {
     float: right;
 }
 
-    .filterRight a {
+    .headerRight a {
         text-decoration: none;
         vertical-align: -webkit-baseline-middle;
     }
@@ -137,55 +196,13 @@ form {
     margin-top: 2%;
 }
 
-@media (max-width: 1200px) and (min-width:768px) {
-    .form-control {
-        width: 500px;
-    }
-
-    .filter {
-        background: #f9f9f9;
-        border-bottom: 2px solid #105caa;
-        /*width: 100%;*/
-        margin-top: 7%;
-    }
-
-    .createAccountForm {
-        margin-top: 7%;
-    }
-
-    .registerHeader {
-        margin-top: 30px;
-        margin-bottom: 2px;
-    }
-
-    .filter {
-        background: #f9f9f9;
-        border-bottom: 2px solid #105caa;
-        /*width: 100%;*/
-        margin-top: 10%;
-    }
-}
-
-@media (max-width: 768px) {
-    .filterLeft {
-        float: left;
-        background: #105caa;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        width: auto;
-        text-transform: uppercase;
-        margin-left: -15px;
-    }
-
-        .filterLeft span {
-            padding: 12px 10px;
-        }
-}
-
 .registerInput {
     width: 500px;
+}
+
+.validationError ul {
+    list-style: none;
+    margin-left: -35px;
 }
 
 /*@media (min-width: 1201px) {

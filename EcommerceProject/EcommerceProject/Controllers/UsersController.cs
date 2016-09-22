@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using EcommerceProject.Models;
 using EcommerceProject.ViewModel;
 using System.Data.Entity.Validation;
+using System.Security.Claims;
 
 namespace EcommerceProject.Controllers
 {
@@ -37,8 +38,42 @@ namespace EcommerceProject.Controllers
             return View(user);
         }
 
+        public ActionResult Login() {
+            ViewBag.returnUrl = Request.UrlReferrer.ToString();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserLogin user, string returnURL, string page)
+        {
+            if (ModelState.IsValid)
+            {
+                EncryptData encrypt = new EncryptData();
+                string encryptedPassword = encrypt.EncryptPassword(user.Password);
+                var userTest = db.Users.Where(i => i.Email == user.Email && i.Password == encryptedPassword).SingleOrDefault();
+                if (userTest != null) {
+                    Session["UserID"] = userTest.UserID;
+                    Session["Username"] = userTest.UserName;
+                    if (page == "register") {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return Redirect(returnURL);
+                }
+            }
+            ModelState.AddModelError(string.Empty, "Your email or password is wrong, please check again.");
+            return View(user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff() {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: Users/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
             return View();
         }
@@ -48,37 +83,55 @@ namespace EcommerceProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(UserViewModel user)
+        public ActionResult Register(UserRegister user)
         {
             if (ModelState.IsValid)
             {
-                try {
-                    User newUser = new Models.User();
-                    newUser.UserName = user.UserName;
-                    newUser.Password = user.Password;
-                    newUser.Email = user.Email;
-                    newUser.Role = 1;
-                    db.Users.Add(newUser);
-                    db.SaveChanges();
-                } catch (DbEntityValidationException ex) {
-                    Exception raise = ex;
-                    foreach (var validationErrors in ex.EntityValidationErrors) {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            string message = string.Format("{0}:{1}",
-                                validationErrors.Entry.Entity.ToString(),
-                                validationError.ErrorMessage);
-                            // raise a new exception nesting  
-                            // the current instance as InnerException  
-                            raise = new InvalidOperationException(message, raise);
-                        }
+                if (CheckDuplicate(user.Email)) {
+                    EncryptData encypt = new EncryptData();
+                    string encryptedPassword = encypt.EncryptPassword(user.Password);
+                    try
+                    {
+                        User newUser = new Models.User();
+                        newUser.UserName = user.UserName;
+                        newUser.Password = encryptedPassword;
+                        newUser.Email = user.Email;
+                        newUser.Role = 1;
+                        db.Users.Add(newUser);
+                        db.SaveChanges();
+                        Session["UserID"] = user.UserID;
+                        Session["Username"] = user.UserName;
                     }
-                    throw raise;
+                    catch (DbEntityValidationException ex)
+                    {
+                        Exception raise = ex;
+                        foreach (var validationErrors in ex.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting  
+                                // the current instance as InnerException  
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
             }
-
+            ModelState.AddModelError(string.Empty, "You email is duplicated, please choose another email address");
             return View(user);
+        }
+
+        public bool CheckDuplicate(string emailCheck) {
+            var email = db.Users.Where(i => i.Email == emailCheck).SingleOrDefault();
+            if (email == null) {
+                return true;
+            }
+            return false;
         }
 
         // GET: Users/Edit/5

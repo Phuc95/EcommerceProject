@@ -33,13 +33,13 @@
 }*@
 
 
-<div class="row filter">
-    <div class="col-md-12 filterContent">        
-        <div class="filterLeft">
+<div class="row header">
+    <div class="col-md-12 headerContent">        
+        <div class="headerLeft">
             <span style="color:white;">Smartphone:</span>
         </div>
-        <div class="filterRight">
-            <a href="#">View more smartphone</a>
+        <div class="headerRight">
+            <a href="@Url.Action("Index", "Products", new { productType = 1})">View more smartphone</a>
         </div>
     </div>
 </div>
@@ -63,13 +63,13 @@
 
 </div>
 
-<div class="row filter" style="margin-top: 2%;">
-    <div class="col-md-12 filterContent">
-        <div class="filterLeft">
+<div class="row header" style="margin-top: 2%;">
+    <div class="col-md-12 headerContent">
+        <div class="headerLeft">
             <span style="color:white;">Tablet:</span>
         </div>
-        <div class="filterRight">
-            <a href="#">View more tablet</a>
+        <div class="headerRight">
+            <a href="@Url.Action("Index", "Products", new { productType = 2})">View more tablet</a>
         </div>
     </div>
 </div>
@@ -89,13 +89,13 @@
     }
 </div>
 
-<div class="row filter" style="margin-top: 2%;">
-    <div class="col-md-12 filterContent">
-        <div class="filterLeft">
+<div class="row header" style="margin-top: 2%;">
+    <div class="col-md-12 headerContent">
+        <div class="headerLeft">
             <span style="color:white;">Laptop:</span>
         </div>
-        <div class="filterRight">
-            <a href="#">View more laptop</a>
+        <div class="headerRight">
+            <a href="@Url.Action("Index", "Products", new { productType = 3})">View more laptop</a>
         </div>
     </div>
 </div>

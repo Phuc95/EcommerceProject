@@ -105,3 +105,5 @@ create table OrderDetail(
 )
 select * from [Order]
 select * from [User]
+
+delete from [User]

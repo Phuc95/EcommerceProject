@@ -13,12 +13,67 @@ namespace EcommerceProject.Controllers
     public class ProductsController : Controller
     {
         private EcommerceDBEntities db = new EcommerceDBEntities();
+        //int currentProductType;
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int productType)
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.Manufacturer);
+            ViewBag.currentProductType = productType;
+            var products = from x in db.Products.Where(i => i.CategoryID == productType)
+                           select new HomeItem
+                           {
+                               ProductName = x.ProductName,
+                               ProductPrice = x.SellingPrice.ToString(),
+                               ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                               CPU = x.ProductDetails.FirstOrDefault().CPU,
+                               OS = x.ProductDetails.FirstOrDefault().OS,
+                               RAM = x.ProductDetails.FirstOrDefault().RAM,
+                               Screen = x.ProductDetails.FirstOrDefault().Screen,
+                               InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                           };
+            ViewBag.Manurfacturer = db.GetManufactureList(productType).ToList();
+            ViewBag.productTypeName = db.Categories.Where(i => i.CategoryID == productType).SingleOrDefault().CategoryName;
             return View(products.ToList());
+        }
+
+        public ActionResult FilterProduct(int productManufacturer, int productType) {
+            ViewBag.currentProductType = productType;
+            ViewBag.selectedManufacturer = productManufacturer;
+            var result = from x in db.Products.Where(i => i.ManufacturerID == productManufacturer && i.CategoryID == productType)
+                         select new HomeItem
+                         {
+                             ProductName = x.ProductName,
+                             ProductPrice = x.SellingPrice.ToString(),
+                             ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                             CPU = x.ProductDetails.FirstOrDefault().CPU,
+                             OS = x.ProductDetails.FirstOrDefault().OS,
+                             RAM = x.ProductDetails.FirstOrDefault().RAM,
+                             Screen = x.ProductDetails.FirstOrDefault().Screen,
+                             InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                         };
+            ViewBag.Manurfacturer = db.GetManufactureList(productType).ToList();
+            ViewBag.productTypeName = db.Categories.Where(i => i.CategoryID == productType).SingleOrDefault().CategoryName;
+            return View("~/Views/Products/Index.cshtml", result.ToList());
+        }
+
+        public ActionResult FilterPrice(int minPrice, int? maxPrice, int productType, int? productManufacturer) {
+            ViewBag.currentProductType = productType;
+            ViewBag.selectedManufacturer = productManufacturer;
+            var result = from x in db.Products.Where(i => (i.SellingPrice >= minPrice && (maxPrice.Equals(null) || i.SellingPrice <= maxPrice)) && i.CategoryID == productType &&  (productManufacturer.Equals(null) || i.ManufacturerID == productManufacturer))
+                         select new HomeItem
+                         {
+                             ProductName = x.ProductName,
+                             ProductPrice = x.SellingPrice.ToString(),
+                             ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
+                             CPU = x.ProductDetails.FirstOrDefault().CPU,
+                             OS = x.ProductDetails.FirstOrDefault().OS,
+                             RAM = x.ProductDetails.FirstOrDefault().RAM,
+                             Screen = x.ProductDetails.FirstOrDefault().Screen,
+                             InternalStorage = x.ProductDetails.FirstOrDefault().InternalStorage
+                         };
+            ViewBag.Manurfacturer = db.GetManufactureList(productType).ToList();
+            ViewBag.productTypeName = db.Categories.Where(i => i.CategoryID == productType).SingleOrDefault().CategoryName;
+            return View("~/Views/Products/Index.cshtml", result.ToList());
         }
 
         // GET: Products/Details/5

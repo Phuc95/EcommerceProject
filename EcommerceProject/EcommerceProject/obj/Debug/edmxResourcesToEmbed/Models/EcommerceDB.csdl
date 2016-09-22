@@ -279,5 +279,12 @@
       <End Role="Product" EntitySet="Products" />
       <End Role="ProductImage" EntitySet="ProductImages" />
     </AssociationSet>
+    <FunctionImport Name="GetManufactureList" ReturnType="Collection(EcommerceDBModel.ManufacturerInfo)">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="ManufacturerInfo">
+    <Property Type="Int32" Name="ManufacturerID" Nullable="false" />
+    <Property Type="String" Name="ManufacturerName" Nullable="true" MaxLength="30" />
+  </ComplexType>
 </Schema>

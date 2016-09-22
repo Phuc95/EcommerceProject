@@ -117,5 +117,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetManufactureList" FunctionName="EcommerceDBModel.Store.GetManufactureList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EcommerceDBModel.ManufacturerInfo">
+          <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+          <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

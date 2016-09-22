@@ -157,8 +157,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EcommerceDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EncryptData.cs" />
     <Compile Include="Models\HomeItem.cs" />
     <Compile Include="Models\Manufacturer.cs">
+      <DependentUpon>EcommerceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManufacturerInfo.cs">
       <DependentUpon>EcommerceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
@@ -191,6 +195,7 @@
     <Content Include="Content\icon\ic_laptop_mac_white_24dp_1x.png" />
     <Content Include="Content\icon\ic_phone_iphone_white_24dp_1x.png" />
     <Content Include="Content\icon\ic_tablet_white_24dp_1x.png" />
+    <Content Include="Content\MediaStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -240,11 +245,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

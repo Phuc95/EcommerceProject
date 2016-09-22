@@ -1,0 +1,111 @@
+﻿@model IEnumerable<EcommerceProject.Models.HomeItem>
+
+@{
+    ViewBag.Title = "Smartphone";
+}
+
+
+<div class="row" style="margin-top: 2%;">
+    @*<div class="col-md-2">
+        <div>
+            <div class="filterHeader">
+                <span>Choose Price</span>
+            </div>
+            <ul class="filterContent">
+                <a href="#">Under 100$</a>
+                <a href="#">100$ - 300$</a>
+                <a href="#">300$ - 500$</a>
+                <a href="#">500$ - 700$</a>
+                <a href="#">700$ - 900$</a>
+                <a href="#">Over 900$</a>
+            </ul>
+        </div>
+        <div>
+            <div class="filterHeader">
+                <span>Choose Manufacturer</span>
+            </div>
+            <ul class="filterContent">
+                <a href="#">Apple</a>
+                <a href="#">Samsung</a>
+                <a href="#">LG</a>
+                <a href="#">HTC</a>
+                <a href="#">Dell</a>
+                <a href="#">Acer</a>
+            </ul>
+        </div>
+    </div>*@
+    <form class="form-inline" style="margin-bottom:2px;">
+        <div class="form-group filterHeader">
+            <span>Choose Manufacturer</span>
+        </div>
+        <div class="form-group filterContent">
+            @foreach (var item in ViewBag.Manurfacturer)
+            {
+                <a href="@Url.Action("FilterProduct", "Products", new { productManufacturer = @item.ManufacturerID, productType = ViewBag.currentProductType })">@item.ManufacturerName</a>
+            }
+        </div>
+    </form>
+    <form class="form-inline" style="margin-bottom:20px;">
+        <div class="form-group filterHeader">
+            <span>Choose Price</span>
+        </div>
+        <div class="form-group filterContent">
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 0, maxPrice = 100, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">Under 100$</a>
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 100, maxPrice = 300, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">100$ - 300$</a>
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 300, maxPrice = 500, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">300$ - 500$</a>
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 500, maxPrice = 700, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">500$ - 700$</a>
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 700, maxPrice = 900, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">700$ - 900$</a>
+            <a href="@Url.Action("FilterPrice", "Products", new { minPrice = 900, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">Over 900$</a>
+        </div>
+    </form>
+    <form class="form-inline" style="margin-bottom:2px;">
+        <div class="filterHeaderMobile" data-toggle="collapse" data-target="#menuManufacturer" aria-expanded="false">
+            <span>Choose Manufacturer</span>
+        </div>
+        <div id="menuManufacturer" class="filterContentMobile collapse" aria-expanded="false">
+            <ul>
+                @foreach (var item in ViewBag.Manurfacturer)
+                {
+                    <li><a href="@Url.Action("FilterProduct", "Products", new { productManufacturer = @item.ManufacturerID, productType = ViewBag.currentProductType})">@item.ManufacturerName</a></li>
+                }
+            </ul>
+        </div>
+    </form>
+    <form class="form-inline" style="margin-bottom:20px;">
+        <div class="filterHeaderMobile" data-toggle="collapse" data-target="#menuPrice" aria-expanded="false">
+            <span>Choose Price</span>
+        </div>
+        <div id="menuPrice"class="filterContentMobile collapse" aria-expanded="false">
+            <ul>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 0, maxPrice = 100, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">Under 100$</a></li>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 100, maxPrice = 300, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">100$ - 300$</a></li>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 300, maxPrice = 500, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">300$ - 500$</a></li>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 500, maxPrice = 700, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">500$ - 700$</a></li>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 700, maxPrice = 900, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">700$ - 900$</a></li>
+                <li><a href="@Url.Action("FilterPrice", "Products", new { minPrice = 900, productType = ViewBag.currentProductType, productManufacturer = ViewBag.selectedManufacturer })">Over 900$</a></li>
+            </ul>
+        </div>
+    </form>
+    <div>
+        <div class="specificTypeHeaderContent">
+            <div class="specificTypeHeaderContentLeft">
+                <span style="color:white;">@ViewBag.productTypeName</span>
+            </div>
+        </div>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-3 cell">
+                    <a href="#" style="text-decoration:none; color: black;">
+                        <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+                        <strong>@item.ProductName</strong><br />
+                        <span>Screen: @item.Screen</span>
+                        <span>OS: @item.OS</span>
+                        <span>CPU: @item.CPU</span>
+                        <span>RAM: @item.RAM</span>
+                        <span>Internal storage: @item.InternalStorage</span><br />
+                        <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+                    </a>
+                </div>
+            }
+        </div>
+</div>
