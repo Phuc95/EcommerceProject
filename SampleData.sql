@@ -7,6 +7,12 @@ insert into ProductImage values(1,'https://cdn4.tgdd.vn/Products/Images/42/73704
 insert into ProductImage values(1,'https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-xam-org-1.png')
 insert into ProductImage values(1,'https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-vang-hong-org-1.png')
 
+update ProductColor
+set QuantityInStock = 0
+where ColorName = 'Silver' and ProductID = 1
+
+select * from ProductColor where ProductID = 1
+
 insert into Product values(1, 1, 'iPhone 6s Plus 16GB', 500, 910, convert(datetime, '4-9-2016 00:00:00'))
 insert into ProductDetail values(2, 'LED-backlit IPS LCD, 5.5", Retina HD', 'iOS 9', 5, 12, 'Apple A9 2 cores 64-bit, 1.8 GHz', '2GB', 'No support', '1 Nano SIM', 'WiFi, 3G, 4G LTE Cat 6', '2750 mAh', '16GB', 192)
 insert into ProductColor values(2, 'Silver', 100)
@@ -228,6 +234,30 @@ insert into ProductDetail values(35, '15.6 inch, HD (1920 x 1080 pixels)', 'Wind
 insert into ProductColor values(35, 'Black', 100)
 insert into ProductImage values(35,'https://cdn.tgdd.vn/Products/Images/44/77490/acer-v3-574-i3-5005u-4gb-500gb-win10-400x400.png')
 
+select * from Comment
+delete Comment
+
+select * from [User]
+
+insert into Comment values(7, 1, 'Comment 1', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 2', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 3', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 4', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 5', convert(datetime, '10-4-2016 00:00:00'))
+
+insert into Comment values(7, 1, 'Comment 6', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 7', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 8', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 9', convert(datetime, '10-4-2016 00:00:00'))
+insert into Comment values(7, 1, 'Comment 10', convert(datetime, '10-4-2016 00:00:00'))
+
+insert into Comment values(7, 1, 'Comment 11', convert(datetime, '10-4-2016 00:00:00'))
+
+insert into Comment values(7, 1, 'Comment 12', convert(datetime, '10-4-2016 00:00:00'))
+
+insert into Comment values(7, 1, 'This is a comment', convert(date, '12-10-2016'))
+
+
 select * from ProductImage
 select * from Product
 
@@ -258,3 +288,11 @@ exec GetManufactureList 1
 exec GetManufactureList 2
 
 exec GetManufactureList 3
+
+select * from Product where ProductName = 'Sony Xperia XA'
+
+select * from ProductColor where ProductID = 6
+
+select * from ProductColor where ProductID = 9
+
+	

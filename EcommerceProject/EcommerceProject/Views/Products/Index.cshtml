@@ -6,34 +6,6 @@
 
 
 <div class="row" style="margin-top: 2%;">
-    @*<div class="col-md-2">
-        <div>
-            <div class="filterHeader">
-                <span>Choose Price</span>
-            </div>
-            <ul class="filterContent">
-                <a href="#">Under 100$</a>
-                <a href="#">100$ - 300$</a>
-                <a href="#">300$ - 500$</a>
-                <a href="#">500$ - 700$</a>
-                <a href="#">700$ - 900$</a>
-                <a href="#">Over 900$</a>
-            </ul>
-        </div>
-        <div>
-            <div class="filterHeader">
-                <span>Choose Manufacturer</span>
-            </div>
-            <ul class="filterContent">
-                <a href="#">Apple</a>
-                <a href="#">Samsung</a>
-                <a href="#">LG</a>
-                <a href="#">HTC</a>
-                <a href="#">Dell</a>
-                <a href="#">Acer</a>
-            </ul>
-        </div>
-    </div>*@
     <form class="form-inline" style="margin-bottom:2px;">
         <div class="form-group filterHeader">
             <span>Choose Manufacturer</span>
@@ -95,7 +67,7 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-3 col-sm-3 cell">
-                    <a href="#" style="text-decoration:none; color: black;">
+                    <a href="@Url.Action("ViewDetail", "Products", new { productID = item.ProductID })" style="text-decoration:none; color: black;">
                         <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
                         <strong>@item.ProductName</strong><br />
                         <span>Screen: @item.Screen</span>

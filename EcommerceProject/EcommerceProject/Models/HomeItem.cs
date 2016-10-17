@@ -7,6 +7,7 @@ namespace EcommerceProject.Models
 {
     public class HomeItem
     {
+        public int ProductID { get; set; }
         public string ProductName;
         public string ProductPrice;
         public string ProductImage;

@@ -1,0 +1,273 @@
+﻿@model EcommerceProject.Models.ProductDetailView
+@{
+    ViewBag.Title = "ViewDetail";
+}
+
+<script>
+    $(function () {
+        $("#bigImages img:eq(0)").nextAll().hide();
+        $(".smallImages img").click(function (e) {
+            var index = $(this).index();
+            $("#bigImages img").eq(index).show().siblings().hide();
+        });
+    });
+</script>
+<script>
+    function CheckColorSelect() {
+        var selectedOption = $("#chooseColor option:selected").val();
+        var productID = $("#productID").val();
+        var colorStatus = $("#colorStatus").text();
+        if (selectedOption == "") {
+            $("#colorStatus").text("Please choose a color");
+            return false;
+        } else if (colorStatus == "Out of stock") {
+            $("#colorStatus").text("This color is out of stock. Please choose another color");
+            return false;
+        } else if (colorStatus != "Available") {
+            return false;
+        } else {
+            $("#addToCart").attr("href", "@Url.Action("AddToCart", "Products")?productID=" + productID +"&productColor=" + selectedOption)
+            return true;
+        }
+    }
+
+    function GetQuantity() {
+        var colorList = document.getElementById("chooseColor");
+        var jsonString = {
+            productID: $("#productID").val(),
+            selectedColor: colorList.options[colorList.selectedIndex].value
+        }
+        $.ajax({
+            url: "@Url.Action("GetColorStatus", "Products")",
+            type: 'POST',
+            data: { 'jsonString': JSON.stringify(jsonString) },
+            success: function (data) {
+                $("#colorStatus").text(data);
+            }
+        })
+    }
+
+    function AddComment() {
+        var currentDate = new Date();
+        var comment = $("#inputComment").val();
+        if (comment == "") {
+            $("#inputComment").val('Please enter comment');
+            $("#inputButton").prop("disabled", true);
+            setTimeout('$("#inputComment").val(""); $("#inputButton").prop("disabled", false);', 1000);
+        } else {
+            var jsonString = {
+                commentContent: comment,
+                userID: '@Request.RequestContext.HttpContext.Session["UserID"]',
+                productID: $("#productID").val(),
+            }
+            $.ajax({
+                url: "@Url.Action("AddComment", "Products")",
+                type: 'POST',
+                data: { 'jsonString': JSON.stringify(jsonString) },
+                success: function (data) {
+                if (data) {
+                    var userName = '@Request.RequestContext.HttpContext.Session["Username"]';
+                    var date = currentDate.getDate() + "/"
+                            + (currentDate.getMonth() + 1) + "/"
+                            + currentDate.getFullYear();
+                    var html = "<div style='border:1px solid #ddd; border-radius:5px 5px ; margin-top:2%;' id='commentList' > <p> <span style='float:left; padding-left:10px;'>" + userName + "</span>" +
+                            "<span style='float:right; padding-right:10px;'>" + date + "</span>" +
+                        "</p> <br />" +
+                        "<span style='padding-left:10px;padding-right:10px;'>" + jsonString.commentContent + "</span></div>"
+                    $("#commentList").prepend(html);
+                    var comment = $("#inputComment").val("");
+                }
+            }
+        })
+        }
+    }
+
+    function ViewMoreComment() {
+        var pageNumber = $("#pageNumber").val();
+        var jsonString = {
+            productID: $("#productID").val(),
+            page: pageNumber
+        }
+
+        $.ajax({
+            url: "@Url.Action("ViewMoreComment", "Products")",
+            type: 'POST',
+            data: { 'jsonString': JSON.stringify(jsonString) },
+            success: function (data) {
+                if (data != "false") {
+                    $.each($.parseJSON(data), function (index, item) {
+                        var html = "<div style='border:1px solid #ddd; border-radius:5px 5px ; margin-top:2%;' id='commentList' > <p> <span style='float:left; padding-left:10px;'>" + item.userName + "</span>" +
+                                "<span style='float:right; padding-right:10px;'>" + item.commentDate + "</span>" +
+                            "</p> <br />" +
+                            "<span style='padding-left:10px;padding-right:10px;'>" + item.commentContent + "</span></div>"
+                        $("#commentList").append(html);
+                        var comment = $("#inputComment").val("");
+                    })
+                    $("#pageNumber").val(parseInt(pageNumber) + 1);
+                }
+        }
+    })
+    }
+</script>
+
+<h2>@Model.productName</h2><br />
+<input type="hidden" id="productID" value="@Model.productID"/>
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="form-group col-md-2 col-xs-2 smallImages">
+            @foreach (var item in Model.productImages)
+            {
+                <img src="@item.ToString()" class="form-control" style="width:72px; height:72px; margin-bottom:30px;" />
+            }
+            @*<img src="https://cdn4.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-bac-org-1.png" class="form-control" style="width:72px; height:72px; margin-bottom:30px;" />
+            <img src="https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-xam-org-1.png" class="form-control" style="width:72px; height:72px; margin-bottom:30px;" />
+            <img src="https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-vang-hong-org-1.png" class="form-control" style="width:72px; height:72px; margin-bottom:30px;" />*@
+        </div>
+        <div class="col-md-10 col-xs-8" id="bigImages">
+            @foreach (var item in Model.productImages)
+            {
+                <img src="@item.ToString()" class="bigImg" />
+            }
+            @*<img src="https://cdn4.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-bac-org-1.png" height="400" />
+            <img src="https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-xam-org-1.png" height="400" />
+            <img src="https://cdn2.tgdd.vn/Products/Images/42/73704/iphone-6s-plus-64gb-vang-hong-org-1.png" height="400" />*@
+        </div> 
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12 infoContent">
+        <div style="font-size:14px;">
+            <p><span style="font-weight: bold;">Manufacturer: </span><a href="#">@Model.productManufacturer</a></p>
+            <p>- Processor: @Model.CPU</p>
+            <p>- Display: @Model.Screen</p>
+            <p>- Memory: @Model.InternalStorage, RAM: @Model.RAM</p>
+            <p>- External Memory: @Model.MemoryCard</p>
+            <p>- Front Camera: @Model.FrontCamera / Rear camera: @Model.RearCamera</p>
+            <p>
+                <div class="form-inline">
+                    - Color:&nbsp;&nbsp;
+                    <select class="form-control" id="chooseColor" onchange="GetQuantity()">
+                        <option disabled selected value="">Choose a color</option>
+                        @foreach (var item in Model.productColor)
+                        {
+                            <option value="@item.ToString()">@item.ToString()</option>
+                        }
+                        @*<option>Gold</option>
+                        <option>White</option>
+                        <option>Black</option>*@
+                    </select>
+                    <span style="color:red; border:0;" class="form-control" id="colorStatus"></span>
+                </div>
+            </p>
+        </div>
+        <hr />
+        <div>
+            <span style="color:mediumblue; font-size:48px;">$@Model.productPrice</span>
+            <a class="btn btn-primary btn-lg" style="text-decoration:none; text-transform:capitalize; float:right;" id="addToCart" onclick="return CheckColorSelect()">Add to cart</a>
+        </div>
+    </div>
+    <div style="width:100%;">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td colspan="2">Detail specification</td>
+            </tr>
+            <tbody>
+                <tr>
+                    <td style="width:30%">Screen</td>
+                    <td style="width:70%">@Model.Screen</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Operating system</td>
+                    <td style="width:70%">@Model.OS</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Front Camera</td>
+                    <td style="width:70%">@Model.FrontCamera MP</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Rear Camera</td>
+                    @if (Model.RearCamera.Equals(null))
+                    {
+                        <td style="width:70%">No support</td>
+                    }
+                    <td style="width:70%">@Model.RearCamera MP</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">CPU</td>
+                    <td style="width:70%">@Model.CPU</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">RAM</td>
+                    <td style="width:70%">@Model.RAM</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Memory Card</td>
+                    <td style="width:70%">@Model.MemoryCard</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">SIM Card</td>
+                    <td style="width:70%">@Model.SIMCard</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Connection</td>
+                    <td style="width:70%">@Model.Connection</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Battery</td>
+                    <td style="width:70%">@Model.Battery</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Internal Storage</td>
+                    <td style="width:70%">@Model.InternalStorage</td>
+                </tr>
+                <tr>
+                    <td style="width:30%">Weight</td>
+                    <td style="width:70%">@Model.Weight</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @*<div class="container-fluid">
+        <div class="row">
+            <div class="form-inline col-md-12 col-sm-12">
+                <textarea placeholder="Type your comment" id="inputComment" class="form-control col-md-9 col-sm-9"></textarea>
+                <input type="submit" onclick="AddComment()" value="Comment" class="form-control col-md-3 col-sm-3" style="float:right;display:inline-block;" />
+            </div>
+        </div>
+    </div>*@
+
+    <div class="input-group">
+        @if (Session["UserID"] == null)
+        {
+            <textarea placeholder="Type your comment" id="inputComment" disabled class="form-control"></textarea>
+        }
+        else
+        {
+        <textarea placeholder="Type your comment" id="inputComment" maxlength="1000" class="form-control"></textarea>
+        }
+        <span class="input-group-btn">
+            @if (Session["UserID"] == null)
+            {
+                <input type="submit" onclick="AddComment()" value="Comment"disabled class="btn btn-default btn-lg" style="margin-left: 9px" />
+            }
+            else
+            {
+            <input type="submit" onclick="AddComment()" value="Comment" id="inputButton" class="btn btn-default btn-lg" style="margin-left: 9px" />
+            }
+        </span>
+    </div>
+
+    <div id="commentList">
+        @foreach (var item in ViewBag.commentList)
+        {
+            <div style="border:1px solid #ddd; border-radius:5px 5px ; margin-top:2%;" id="commentList" >
+                <p>
+                    <span style="float:left; padding-left:10px;">@item.userName</span>
+                    <span style="float:right; padding-right:10px;">@item.commentDate</span>
+                </p>
+                <br />
+                <span style="padding-left:10px;padding-right:10px;">@item.commentContent</span>
+            </div>
+        }
+    </div>
+    <input type="hidden" value="2" id="pageNumber"/>
+    <button onclick="ViewMoreComment()">View more comment</button>
+</div>

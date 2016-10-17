@@ -18,6 +18,7 @@ namespace EcommerceProject.Controllers
             var homeItemPhone = from x in db.Products.Where(i => i.CategoryID == 1).Take(10)
                            select new HomeItem
                            {
+                               ProductID = x.ProductID,
                                ProductName = x.ProductName,
                                ProductPrice = x.SellingPrice.ToString(),
                                ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
@@ -31,6 +32,7 @@ namespace EcommerceProject.Controllers
             var homeItemTablet = from x in db.Products.Where(i => i.CategoryID == 2).Take(10)
                                 select new HomeItem
                                 {
+                                    ProductID = x.ProductID,
                                     ProductName = x.ProductName,
                                     ProductPrice = x.SellingPrice.ToString(),
                                     ProductImage = x.ProductImages.FirstOrDefault().ImagePath,
@@ -43,6 +45,7 @@ namespace EcommerceProject.Controllers
             var homeItemLaptop = from x in db.Products.Where(i => i.CategoryID == 3).Take(10)
                                 select new HomeItem
                                 {
+                                    ProductID = x.ProductID,
                                     ProductName = x.ProductName,
                                     ProductPrice = x.SellingPrice.ToString(),
                                     ProductImage = x.ProductImages.FirstOrDefault().ImagePath,

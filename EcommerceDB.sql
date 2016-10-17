@@ -104,6 +104,14 @@ create table OrderDetail(
 	TotalUnit int
 )
 select * from [Order]
+select * from [OrderDetail]
+select * from ProductColor where ProductID = 6
 select * from [User]
+
+SELECT        Product.ProductName, Product.SellingPrice, ProductDetail.Screen, ProductDetail.OS, ProductImage.ImagePath, ProductColor.ColorName, ProductColor.QuantityInStock
+FROM            Product INNER JOIN
+                         ProductColor ON Product.ProductID = ProductColor.ProductID INNER JOIN
+                         ProductDetail ON Product.ProductID = ProductDetail.ProductID INNER JOIN
+                         ProductImage ON Product.ProductID = ProductImage.ProductID where Product.ProductID = 1
 
 delete from [User]

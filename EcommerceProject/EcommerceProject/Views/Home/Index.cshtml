@@ -47,7 +47,7 @@
     @foreach (var item in ViewBag.HomeItemPhone)
     {
         <div class="col-md-1 col-sm-3 cell">
-            <a href="#" style="text-decoration:none; color: black;">
+            <a href="@Url.Action("ViewDetail", "Products", new { productID = item.ProductID })" style="text-decoration:none; color: black;">
                 <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
                 <strong>@item.ProductName</strong><br />
                 <span>Screen: @item.Screen</span>
@@ -77,14 +77,16 @@
     @foreach (var item in ViewBag.HomeItemTablet)
     {
         <div class="col-md-1 col-sm-3 cell">
-            <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
-            <strong>@item.ProductName</strong><br />
-            <span>Screen: @item.Screen</span>
-            <span>OS: @item.OS</span>
-            <span>CPU: @item.CPU</span>
-            <span>RAM: @item.RAM</span>
-            <span>Internal storage: @item.InternalStorage</span><br />
-            <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+            <a href="@Url.Action("ViewDetail", "Products", new { productID = item.ProductID })" style="text-decoration:none; color: black;">
+                <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+                <strong>@item.ProductName</strong><br />
+                <span>Screen: @item.Screen</span>
+                <span>OS: @item.OS</span>
+                <span>CPU: @item.CPU</span>
+                <span>RAM: @item.RAM</span>
+                <span>Internal storage: @item.InternalStorage</span><br />
+                <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+            </a>
         </div>
     }
 </div>
@@ -103,14 +105,16 @@
     @foreach (var item in ViewBag.HomeItemLaptop)
     {
         <div class="col-md-1 col-sm-3 cell">
-            <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
-            <strong>@item.ProductName</strong><br />
-            <span>Screen: @item.Screen</span>
-            <span>OS: @item.OS</span>
-            <span>CPU: @item.CPU</span>
-            <span>RAM: @item.RAM</span>
-            <span>Internal storage: @item.InternalStorage</span><br />
-            <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+            <a href="@Url.Action("ViewDetail", "Products", new { productID = item.ProductID })" style="text-decoration:none; color: black;">
+                <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+                <strong>@item.ProductName</strong><br />
+                <span>Screen: @item.Screen</span>
+                <span>OS: @item.OS</span>
+                <span>CPU: @item.CPU</span>
+                <span>RAM: @item.RAM</span>
+                <span>Internal storage: @item.InternalStorage</span><br />
+                <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+            </a>
         </div>
     }
 </div>

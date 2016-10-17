@@ -1,0 +1,29 @@
+﻿@model IEnumerable<EcommerceProject.Models.HomeItem>
+@{
+    ViewBag.Title = "Search result";
+}
+
+<div class="row" style="margin-top: 2%;">
+    <div>
+        <div class="specificTypeHeaderContent">
+            <div class="specificTypeHeaderContentLeft">
+                <span style="color:white;">Search result</span>
+            </div>
+        </div>
+        @foreach (var item in Model)
+            {
+            <div class="col-md-3 col-sm-3 cell">
+                <a href="@Url.Action("ViewDetail", "Products", new { productID = item.ProductID })" style="text-decoration:none; color: black;">
+                    <img width="150" style="display: block; margin:auto;" height="150" src="@item.ProductImage"><br />
+                    <strong>@item.ProductName</strong><br />
+                    <span>Screen: @item.Screen</span>
+                    <span>OS: @item.OS</span>
+                    <span>CPU: @item.CPU</span>
+                    <span>RAM: @item.RAM</span>
+                    <span>Internal storage: @item.InternalStorage</span><br />
+                    <strong style="color: red; font-size: large;">$ @item.ProductPrice</strong>
+                </a>
+            </div>
+        }
+    </div>
+</div>

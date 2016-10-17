@@ -6,6 +6,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
     <script>
         $('#loginLin').click(function () {
             showModal();
@@ -27,7 +28,7 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
+                @using (Html.BeginForm("Search", "Products", FormMethod.Post, new { @class = "navbar-form navbar-left" }))
             {
                     <div class="form-group has-feedback">
                         <input type="text" name="search" class="form-control" placeholder="Search">
@@ -53,7 +54,12 @@
                             Laptop
                         </a>
                     </li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>
+                        <a href="@Url.Action("AddToCart", "Products", new { productType = 3})">
+                            <img src="~/Content/icon/ic_shopping_cart_white_24dp_1x.png" />
+                            View cart
+                        </a>
+                    </li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -62,14 +68,13 @@
     </div>
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        @RenderBody()              
     </div>
+    <hr />  
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

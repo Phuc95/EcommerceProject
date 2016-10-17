@@ -205,9 +205,22 @@ form {
     margin-left: -35px;
 }
 
+footer{
+    margin-left:50px;
+    margin-right:50px;
+    margin-bottom:-3%;
+}
+
+.cartInput {
+    width:58%;
+    float:right;
+}
+
+
 /*@media (min-width: 1201px) {
     .form-control {
         width: auto;
     }
 }*/
+
 

@@ -62,6 +62,7 @@ namespace EcommerceProject.Controllers
                 }
             }
             ModelState.AddModelError(string.Empty, "Your email or password is wrong, please check again.");
+            ViewBag.returnURL = returnURL;
             return View(user);
         }
 

@@ -42,3 +42,6 @@ C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\E
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.xml
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\EntityFramework.SqlServer.xml
 C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\obj\Debug\EcommerceProject.csprojResolveAssemblyReference.cache
+C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\PayPal.dll
+C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\PayPalCoreSDK.dll
+C:\Users\Dell\Documents\EcommerceProject\EcommerceProject\EcommerceProject\bin\PayPal.xml
