@@ -212,10 +212,13 @@ footer{
 }
 
 .cartInput {
-    width:58%;
-    float:right;
+    width: 58%;
+    float: right;
 }
 
+/*.cartMargin {
+    margin-top: 2%;
+}*/
 
 /*@media (min-width: 1201px) {
     .form-control {

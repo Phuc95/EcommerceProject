@@ -3,35 +3,35 @@
 @{
     ViewBag.Title = "DemoCart";
 }
-@using (Html.BeginForm("Checkout", "Products", new { @class = "cartMargin" }))
+@using (Html.BeginForm("Checkout", "Products", FormMethod.Post, new { @class = "cartMargin" }))
 {
     <div class="col-md-5 col-sm-12">
         <label style="font-size:24px; font-weight:bold">Customer Information</label>
         <div style="font-size:16px;margin:10px 0 10px -20px;">
             <div class="col-md-12 col-sm-12" style="margin-bottom:5px;">
                 @Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger cartInput" })
                 @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control cartInput" } })
                 @*<label class="col-md-5">FullName:</label>
                 <input type="text" class="form-control cartInput" />*@
             </div>
             <div class="col-md-12 col-sm-12" style="margin-bottom:5px;">
                 @Html.LabelFor(model => model.ShippingAddress, htmlAttributes: new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger cartInput" })
                 @Html.EditorFor(model => model.ShippingAddress, new { htmlAttributes = new { @class = "form-control cartInput" } })                
                 @*<label class="col-md-5">Address:</label>
                 <input type="text" class="form-control" style="width:58%;float:right" />*@
             </div>
             <div class="col-md-12 col-sm-12" style="margin-bottom:5px;">
                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger cartInput" })
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control cartInput" } })
                 @*<label class="col-md-5">Email:</label>
                 <input type="text" class="form-control" style="width:58%;float:right" />*@
             </div>
             <div class="col-md-12 col-sm-12" style="margin-bottom:5px;">
                 @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "col-md-5" })
-                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger cartInput" })
                 @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control cartInput" } })
                 @*<label class="col-md-5">PhoneNumber:</label>
                 <input type="text" class="form-control" style="width:58%;float:right" />*@
@@ -62,29 +62,36 @@
                 <td>Color</td>
                 <td>Sub total</td>
             </tr>
-            @foreach (var item in (List<CartItemModel>)Session["cart"])
+            @if ((List<CartItemModel>)Session["cart"] == null)
             {
-                <tr>
-                    <td>
-                        <img src="@item.productImage" style="width:50px; height:50px; float:left;margin-right:20px;" />
-                        <div>
-                            <label>@item.productName</label><br />
-                            <a href="@Url.Action("DeleteCartItem", "Products", new { productID = @item.productID, productColor = @item.productColor})" style="color:#d0c9c9; font-size:12px;">Delete</a>
-                        </div>
-                    </td>
-                    <td>
-                        @*<select style="width:80px;">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>*@
-                        <label id="quantity">@item.productQuantity</label>
-                    </td>
-                    <td>$@item.productPrice</td>
-                    <td>@item.productColor</td>
-                    <td>$@(item.productPrice * item.productQuantity)</td>
-                </tr>
+                <tr><td colspan="5" style="text-align:center">There's no item in cart</td></tr>
+            }
+            else
+            {
+                foreach (var item in (List<CartItemModel>)Session["cart"])
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.productImage" style="width:50px; height:50px; float:left;margin-right:20px;" />
+                            <div>
+                                <label style="display:block">@item.productName</label>
+                                <a href="@Url.Action("DeleteCartItem", "Products", new { productID = @item.productID, productColor = @item.productColor})" style="color:#d0c9c9; font-size:12px;">Delete</a>
+                            </div>
+                        </td>
+                        <td>
+                            @*<select style="width:80px;">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>*@
+                            <label id="quantity">@item.productQuantity</label>
+                        </td>
+                        <td>$@item.productPrice</td>
+                        <td>@item.productColor</td>
+                        <td>$@(item.productPrice * item.productQuantity)</td>
+                    </tr>
+                }
             }
         </table>
         <input type="hidden" name="totalPrice" value="@ViewBag.total"/>
@@ -97,7 +104,14 @@
     </div>
     <div style="margin-top:40px;margin-left:5%" class="col-md-11">
         <a href="#" style="color:#ff6a00; float:left;">< Continue Shopping</a>
-        <input type="submit" value="Confirm Cart" class="btn btn-danger" style="float:right;" />
+        @if (Session["cart"] == null)
+        {
+            <input type="submit" value="Confirm Cart" disabled class="btn btn-danger" style="float:right;" />
+        }
+        else
+        {
+            <input type="submit" value="Confirm Cart" class="btn btn-danger" style="float:right;" />
+        }
     </div>
 }
 

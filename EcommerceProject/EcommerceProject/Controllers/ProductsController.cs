@@ -363,6 +363,7 @@ namespace EcommerceProject.Controllers
                 return View("PaymentSuccess");
             }
             else if (paymentMethod == "CashOnDelivery") {
+                Session["cart"] = null;
                 return View("CashOnDelivery");
             }
             return View();
@@ -432,7 +433,7 @@ namespace EcommerceProject.Controllers
             return new Random().Next(999999).ToString();
         }
         // GET: Products/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult AdminDetails(int? id)
         {
             if (id == null)
             {
@@ -447,7 +448,7 @@ namespace EcommerceProject.Controllers
         }
 
         // GET: Products/Create
-        public ActionResult Create()
+        public ActionResult AdminCreate()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             ViewBag.ManufacturerID = new SelectList(db.Manufacturers, "ManufacturerID", "ManufacturerName");
@@ -474,7 +475,7 @@ namespace EcommerceProject.Controllers
         }
 
         // GET: Products/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult AdminEdit(int? id)
         {
             if (id == null)
             {
@@ -514,7 +515,7 @@ namespace EcommerceProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,CategoryID,ManufacturerID,ProductName,BasisPrice,SellingPrice,CreatedAt")] Product product)
+        public ActionResult AdminEdit([Bind(Include = "ProductID,CategoryID,ManufacturerID,ProductName,BasisPrice,SellingPrice,CreatedAt")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -528,7 +529,7 @@ namespace EcommerceProject.Controllers
         }
 
         // GET: Products/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult AdminDelete(int? id)
         {
             if (id == null)
             {
@@ -545,7 +546,7 @@ namespace EcommerceProject.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult AdminDeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);

@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bd064305409b46c49f5e845dffacfbc5" Name="Diagram1">
-        <EntityTypeShape EntityType="EcommerceDBModel.Category" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Comment" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Manufacturer" Width="1.5" PointX="0.5" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Order" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.OrderDetail" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.Product" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.ProductColor" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.ProductDetail" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.ProductImage" Width="1.5" PointX="5.25" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EcommerceDBModel.User" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+      <Diagram DiagramId="bd064305409b46c49f5e845dffacfbc5" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="EcommerceDBModel.Category" Width="1.5" PointX="2.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Comment" Width="1.5" PointX="8.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Manufacturer" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Order" Width="1.5" PointX="11.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.OrderDetail" Width="1.5" PointX="14.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.Product" Width="1.5" PointX="9.875" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.ProductColor" Width="1.5" PointX="4.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.ProductDetail" Width="1.5" PointX="12" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.ProductImage" Width="1.5" PointX="15.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EcommerceDBModel.User" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
         <AssociationConnector Association="EcommerceDBModel.FK__Product__Categor__145C0A3F" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceDBModel.FK__Comment__Product__239E4DCF" ManuallyRouted="false" />
         <AssociationConnector Association="EcommerceDBModel.FK__Comment__UserID__22AA2996" ManuallyRouted="false" />
